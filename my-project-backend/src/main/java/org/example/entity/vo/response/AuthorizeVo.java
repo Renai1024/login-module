@@ -7,8 +7,8 @@ import java.util.Date;
 @Data
 public class AuthorizeVo {
 
-    String username;
-    String token;
-    String role;
-    Date expire;
+    String username;    //用户名
+    String token;       //携带的token
+    String role;        //角色
+    Date expire;        //过期时间
 }
