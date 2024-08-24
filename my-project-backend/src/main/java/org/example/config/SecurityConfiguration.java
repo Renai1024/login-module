@@ -51,7 +51,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(conf -> conf
-                        .requestMatchers("/api/auth/**").permitAll()    //放行所有登录相关的请求
+                        .requestMatchers("/api/auth/**", "/error").permitAll()    //放行所有登录相关的请求，放行异常和错误请求
                         .anyRequest().authenticated()                     //其他所有请求都得经过验证
                 )
                 .formLogin(conf -> conf
@@ -84,11 +84,11 @@ public class SecurityConfiguration {
         String token = jwtUtils.createJwt(user, account.getId(), account.getUsername());
         AuthorizeVo vo = account.asViewObject(AuthorizeVo.class, v -> {
             v.setToken(token);
-            v.setExpire(jwtUtils.expireTime());
+            v.setExpire(jwtUtils.expireTime());      //设置过期时间
         });
         //AuthorizeVo vo = new AuthorizeVo();
         //BeanUtils.copyProperties(account, vo);
-                   //设置过期时间
+
         response.getWriter().write(RestBean.success(vo).asJsonString());
     }
 

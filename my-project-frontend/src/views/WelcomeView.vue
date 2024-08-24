@@ -11,10 +11,14 @@
     <div class="welcome-title">
       <div style="font-size: 30px; font-weight: bold">欢迎来到本测试网站</div>
       <div style="margin-top: 10px">在这里可以学习如何搭建网站</div>
-      <div style="margin-top: 5px">Designed by Renai</div>
+      <div style="margin-top: 5px">Designed by @Renai</div>
     </div>
     <div class="right-card">
-      <router-view/>
+      <router-view v-slot="{ Component }">
+        <transition name="el-fade-in-linear" mode="out-in">
+          <component :is="Component"/>
+        </transition>
+      </router-view>
     </div>
   </div>
 </template>
