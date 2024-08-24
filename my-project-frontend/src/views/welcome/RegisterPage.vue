@@ -35,7 +35,6 @@ const validatePassword = (rule, value, callback) => {
   }else {
     callback()
   }
-
 }
 
 const rule = {
